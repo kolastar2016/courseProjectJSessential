@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Task 01</title>
+	</head>
+
+	<body>
+		<script>
+		/*
+        Написати  функцію  number(from,  to),  дана  функція  повинна 
+        виводити число кожну секунду, починаючи від from до to 
+        ! Зробити  використовуючи  setInterval(), а  також 
+        використовуючи вкладений setTimeout()
+		*/
+
+		//Варіант 1: Використовуючи setInterval()
+		function number(from, to) {
+			let current = from;
+			const intervalId = setInterval(() => {
+				console.log(current++);
+				if (current > to) clearInterval(intervalId);
+			}, 1000);
+		}
+
+		// Виклик функції
+		// number(1, 5);
+
+		//Варіант 2: Використовуючи вкладений setTimeout()
+		function number(from, to) {
+			const output = (current) => {
+				if (current > to) return;
+				console.log(current);
+				setTimeout(() => output(current + 1), 1000);
+			};
+			output(from);
+		}
+
+		// Виклик функції
+		// number(1, 5);
+
+
+		
+		</script>
+	</body>
+</html>

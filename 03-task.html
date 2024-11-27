@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Task 01</title>
+	</head>
+
+	<body>
+		<script>
+		/*Завдання 3 
+		Гра «Як стати мільйонером». 
+
+		Подумайте,  як  можна  реалізувати  подібний  сценарій  з 
+		використанням  масивів  та  об'єктів.  Пам'ятайте,  що  для  кожного 
+		запитання  потрібно  прописати:  запитання,  4  варіанти  відповіді, 
+		правильну  відповідь  (яку  порівнюватимемо  з  тим,  що  ввів 
+		користувач), сума, яку виграв користувач. Визначте щонайменше 5 
+		питань.  Запитання  з  варіантами  відповідей  ви  можете  вигадати 
+		самостійно, а можете скористатися пошуком.
+		*/
+
+		const questions = [
+			{ question: "Яка планета найближча до Сонця?", options: { a: "Марс", b: "Земля", c: "Меркурій", d: "Венера" }, answer: "c", prize: 1000 },
+			{ question: "Який газ складає більшість атмосфери Землі?", options: { a: "Кисень", b: "Вуглекислий газ", c: "Азот", d: "Гелій" }, answer: "c", prize: 1000 },
+			{ question: "Скільки континентів на Землі?", options: { a: "5", b: "6", c: "7", d: "8" }, answer: "c", prize: 1000 },
+			{ question: "Яка валюта Японії?", options: { a: "Долар", b: "Євро", c: "Йена", d: "Фунт" }, answer: "c", prize: 1000 },
+			{ question: "Хто написав 'Гаррі Поттера'?", options: { a: "Джон Ролінг", b: "Джордж Мартін", c: "Сет Меєр", d: "Льюїс Керролл" }, answer: "a", prize: 1000 }
+		];
+
+		function playGame() {
+			let totalPrize = 0;
+
+			for (const { question, options, answer, prize } of questions) {
+				let userAnswer;
+				
+				do {
+					userAnswer = prompt(`${question}\n a) ${options.a}\n b) ${options.b}\n c) ${options.c}\n d) ${options.d}`);
+					
+					if (userAnswer === null) {
+						return alert("Гра скасована.");
+					}
+
+					userAnswer = userAnswer.trim().toLowerCase();
+					
+					if (!['a', 'b', 'c', 'd'].includes(userAnswer)) {
+						alert("Введіть a, b, c або d.");
+					}
+
+				} while (!['a', 'b', 'c', 'd'].includes(userAnswer));
+
+				if (userAnswer === answer) {
+					totalPrize += prize;
+					if (confirm("Чи бажаєте продовжити гру?")) continue;
+					return alert(`Ви виграли ${totalPrize} гривень!`);
+				}
+				
+				return alert("Неправильна відповідь. Гра закінчена.");
+			}
+
+			alert(`Вітаємо! Ви виграли ${totalPrize} гривень!`);
+		}
+
+		playGame();
+
+		</script>
+	</body>
+</html>

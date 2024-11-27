@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Task 01</title>
+	</head>
+
+	<body>
+		<script>
+		/*
+		Написати  функцію  upString(str), яка  приймає  рядок,  та 
+        переводить  усі  символи,  котрі  були  прописані  у  нижньому 
+        регістрі у верхній регістр.  
+        Приклад:upString( ‘hello’); // HELLO
+		*/
+
+		const palindrom = str => (s => s === s.split('').reverse().join(''))(str.toLowerCase().replace(/\s+/g, ''));
+
+		console.log(palindrom('olo')); 
+		console.log(palindrom('hello'));
+		console.log(palindrom('Madam'));
+		console.log(palindrom('A man a plan a canal Panama')); 
+		</script>
+	</body>
+</html>

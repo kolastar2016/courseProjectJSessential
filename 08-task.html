@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="uk">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Запис на прийом до лікаря</title>
+		<link rel="stylesheet" href="./08-task/styles.css">
+	</head>
+
+	<body>
+		<!--
+		Реалізувати використовуючи HTML, CSS, JS додаток «Запис на 
+		прийом до лікаря» 
+		У даному додатку передбачити форму запису на прийом, вона 
+		повинна містити: 
+		- Поля для введення ПІБ; 
+		- Поле для введення телефону; 
+		- Вибір статі (реалізувати за допомогою radiobutton); 
+		- Поля для обрання дати та часу; 
+		- Кнопку «Оформити візит». 
+		Дані з полів можна зберігати у localStorage. -->
+
+		<div class="container">
+			<h1>Запис на прийом до лікаря</h1>
+			<form id="appointmentForm">
+				<label for="name">ПІБ:</label>
+				<input type="text" id="name" required>
+
+				<label for="phone">Телефон:</label>
+				<input type="tel" id="phone" required>
+
+				<fieldset>
+					<legend>Стать:</legend>
+					<label>
+						<input type="radio" name="gender" value="Чоловіча" required> Чоловіча
+					</label>
+					<label>
+						<input type="radio" name="gender" value="Жіноча"> Жіноча
+					</label>
+				</fieldset>
+
+				<label for="date">Дата:</label>
+				<input type="date" id="date" required>
+
+				<label for="time">Час:</label>
+				<input type="time" id="time" required>
+
+				<button type="submit">Оформити візит</button>
+			</form>
+
+			<div id="message"></div>
+		</div>
+
+		<script src="./08-task/script.js"></script>
+	</body>
+</html>
