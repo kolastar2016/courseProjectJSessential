@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Task 01</title>
+	</head>
+
+	<body>
+		<script>
+		/*Завдання 3 
+		Гра «Як стати мільйонером».
+		 
+		Збільште кількість запитань до 15 і додайте вогнетривкі суми 
+		на 5 і 10 запитаннях ($5000 і $25000 відповідно). Це означає, 
+		що  якщо  користувач  відповів,  наприклад,  на  7  запитань  і 
+		«заробив»  $10000,  а  на  8-е  відповів  неправильно,  то 
+		гарантовано отримає $5000. 
+		*/
+		const questions = [
+			{ question: "Яка планета найближча до Сонця?", options: { a: "Марс", b: "Земля", c: "Меркурій", d: "Венера" }, answer: "c", prize: 500 },
+			{ question: "Який газ складає більшість атмосфери Землі?", options: { a: "Кисень", b: "Вуглекислий газ", c: "Азот", d: "Гелій" }, answer: "c", prize: 1000 },
+			{ question: "Скільки континентів на Землі?", options: { a: "5", b: "6", c: "7", d: "8" }, answer: "c", prize: 2000 },
+			{ question: "Яка валюта Японії?", options: { a: "Долар", b: "Євро", c: "Йена", d: "Фунт" }, answer: "c", prize: 3000 },
+			{ question: "Хто написав 'Гаррі Поттера'?", options: { a: "Джон Ролінг", b: "Джордж Мартін", c: "Сет Меєр", d: "Льюїс Керролл" }, answer: "a", prize: 4000 },
+			{ question: "Яка столиця України?", options: { a: "Львів", b: "Харків", c: "Київ", d: "Одеса" }, answer: "c", prize: 5000 },
+			{ question: "Скільки планет в Сонячній системі?", options: { a: "8", b: "9", c: "7", d: "6" }, answer: "a", prize: 8000 },
+			{ question: "Яка найбільша країна світу?", options: { a: "США", b: "Канада", c: "Росія", d: "Китай" }, answer: "c", prize: 10000 },
+			{ question: "Яка найвища гора у світі?", options: { a: "К2", b: "Кіліманджаро", c: "Еверест", d: "Монблан" }, answer: "c", prize: 13000 },
+			{ question: "Яка найглибша точка на Землі?", options: { a: "Маріанський жолоб", b: "Гімалаї", c: "Кораловий риф", d: "Атлантичний океан" }, answer: "a", prize: 15000 },
+			{ question: "Скільки кольорів в веселці?", options: { a: "5", b: "7", c: "6", d: "8" }, answer: "b", prize: 25000 },
+			{ question: "Хто винайшов телефон?", options: { a: "Едісон", b: "Бенджамін Франклін", c: "Олександр Белл", d: "Нікола Тесла" }, answer: "c", prize: 50000 },
+			{ question: "Яка річка є найдовшою у світі?", options: { a: "Амазонка", b: "Ніл", c: "Міссісіпі", d: "Єнісей" }, answer: "b", prize: 100000 },
+			{ question: "Яка тварина є найбільшою на Землі?", options: { a: "Синій кит", b: "Африканський слон", c: "Білий ведмідь", d: "Жираф" }, answer: "a", prize: 250000 },
+			{ question: "Яка країна є батьківщиною оливкової олії?", options: { a: "Греція", b: "Іспанія", c: "Італія", d: "Туреччина" }, answer: "a", prize: 500000 },
+			{ question: "Хто є автором роману '1984'?", options: { a: "Рей Бредбері", b: "Джордж Орвелл", c: "Олдос Хакслі", d: "Френсіс Скотт Фіцджеральд" }, answer: "b", prize: 1000000 }
+		];
+
+		function formatPrize(amount) {
+			return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "); // Додає пробіли в тисячах
+		}
+
+		function playGame() {
+			let guaranteedPrize = 0;
+
+			for (let i = 0; i < questions.length; i++) {
+				const { question, options, answer, prize } = questions[i];
+				let userAnswer;
+
+				// Показуємо запитання та отримуємо відповідь
+				do {
+					userAnswer = prompt(`${question}\n a) ${options.a}\n b) ${options.b}\n c) ${options.c}\n d) ${options.d}`);
+					
+					// Якщо користувач скасовує запитання
+					if (userAnswer === null) {
+						return alert("Гра скасована.");
+					}
+
+					userAnswer = userAnswer.trim().toLowerCase();
+					
+					// Перевірка на правильність вводу
+					if (!['a', 'b', 'c', 'd'].includes(userAnswer)) {
+						alert("Введіть a, b, c або d.");
+					}
+
+				} while (!['a', 'b', 'c', 'd'].includes(userAnswer));
+
+				// Перевірка відповіді
+				if (userAnswer === answer) {
+					alert(`Вітаємо! Ви виграли ${formatPrize(prize)} гривень!`);
+					// Вогнетривка сума на 5-му та 10-му запитаннях
+					if (i === 5) guaranteedPrize = Math.max(guaranteedPrize, 5000);
+					if (i === 10) guaranteedPrize = Math.max(guaranteedPrize, 25000);
+					if (i === questions.length - 1) return alert(`Вітаємо! Ви виграли ${formatPrize(prize)} гривень!`);
+					if (confirm("Чи бажаєте продовжити гру?")) continue; // Якщо користувач хоче продовжити
+					return alert(`Ви виграли ${formatPrize(guaranteedPrize)} гривень!`);
+				}
+				
+				// Неправильна відповідь
+				alert("Неправильна відповідь. Гра закінчена.");
+				return alert(`Ви отримали гарантовану суму: ${formatPrize(guaranteedPrize)} гривень!`);
+			}
+			
+			// Якщо гравець пройшов всі запитання
+			alert(`Вітаємо! Ви виграли ${formatPrize(guaranteedPrize)} гривень!`);
+		}
+
+		playGame();
+
+
+		</script>
+	</body>
+</html>
