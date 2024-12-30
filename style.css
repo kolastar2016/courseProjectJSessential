@@ -1,0 +1,34 @@
+
+body {
+    background-color: rgb(127, 180, 255);
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    font-size: 20px;
+    line-height: 24px;
+    color: greenyellow;
+    margin: 20px 0;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-size .3s linear;
+    background-image: linear-gradient(90deg, #0e2f4b 0, #0e2f4b);
+    background-repeat: no-repeat;
+    background-position: 0 95%;
+    background-size: 100% 1px;
+    background-color: transparent;
+}
+
+a:hover {
+    color: greenyellow;
+    text-decoration: none;
+    cursor: pointer;
+    background-size: 0 1px;
+}
